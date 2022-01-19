@@ -14,7 +14,6 @@ public class CarController : MonoBehaviour
     float gasPedal = 0;
     float Turning = 0;
     float rotationAngle = 0;
-    float Brake = 0;
     // Start is called before the first frame update
     void Start()
     {
