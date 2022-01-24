@@ -37,6 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CarController.cs" />
+     <Compile Include="Assets\Scripts\blackHole.cs" />
+     <Compile Include="Assets\Scripts\Timer.cs" />
+     <Compile Include="Assets\Scripts\DestroyTimer.cs" />
+     <Compile Include="Assets\Scripts\FinishLine.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\UNITY\2020.3.20f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -666,6 +670,12 @@
     </Reference>
     <Reference Include="Unity.2D.IK.Runtime">
         <HintPath>D:\4175\soloProject\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+        <HintPath>D:\4175\soloProject\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+        <HintPath>D:\4175\soloProject\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
         <HintPath>D:\4175\soloProject\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll</HintPath>

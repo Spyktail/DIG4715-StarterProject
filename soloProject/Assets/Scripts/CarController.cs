@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarController : MonoBehaviour
 {
@@ -13,20 +14,93 @@ public class CarController : MonoBehaviour
     float velocityVsUp;
     float gasPedal = 0;
     float Turning = 0;
+    float twoSecTimer = 2;
+    bool twoSecondRunning = false;
+    public AudioSource audioSource;
+    public AudioClip winClip;
+    public AudioClip loseClip;
     float rotationAngle = 0;
+    public Text instructions;
+    /*public Text winCondText = "";
+
+    public void winCond() 
+    {
+        if (winCondition = 1) 
+        {
+
+        }
+    }*/
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        instructions.text = "Use the WASD keys to make it to end without falling in a black hole!";
+        twoSecondRunning = true;
     }
 
+    public void WinCond(int winCondition) 
+    {
+        if (winCondition == 1)
+        {
+            instructions.text = "YOU WIN!!!";
+        }
+        if (winCondition == 2)
+        {
+            instructions.text = "You Lose!";
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        Vector2 inputVector = Vector2.zero;
-        inputVector.x = Input.GetAxis("Horizontal");
-        inputVector.y = Input.GetAxis("Vertical");
-        SetInputVector(inputVector);
+        /*if (twoSecTimer <= 0)
+        {
+            Vector2 inputVector = Vector2.zero;
+            inputVector.x = Input.GetAxis("Horizontal");
+            inputVector.y = Input.GetAxis("Vertical");
+            SetInputVector(inputVector);
+
+            if (inputVector.y != 0 || inputVector.x != 0)
+            {
+                Timer.instance.SetTimer(true);
+            }
+        }*/
+
+        if (twoSecondRunning)
+        {
+            if (twoSecTimer > 0)
+            {
+                twoSecTimer -= Time.deltaTime;
+            }
+            else 
+            {
+            twoSecTimer = 0;
+
+            instructions.text = "";
+
+            Vector2 inputVector = Vector2.zero;
+            inputVector.x = Input.GetAxis("Horizontal");
+            inputVector.y = Input.GetAxis("Vertical");
+            SetInputVector(inputVector);
+
+            if (inputVector.y != 0 || inputVector.x != 0)
+            {
+                Timer.instance.SetTimer(true);
+            }
+            }
+        }
+
+        if (Timer.instance.timeRemaining == 0)
+        {
+            Vector2 position = transform.position;
+            position.y = position.y - 50f;
+            transform.position = position;
+            
+            Destroy(this);
+
+            audioSource.PlayOneShot(loseClip);
+
+            instructions.text = "You Lose!";
+        }
     }
 
     void FixedUpdate()
@@ -34,6 +108,7 @@ public class CarController : MonoBehaviour
         MakeCarGo();
         SteerCar();
         KillOrthogonalVelocity();
+        
 
     }
 
