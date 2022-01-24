@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class blackHole : MonoBehaviour
 {
-    void OnTriggerEnter(Collider2D other)
+    void OnTriggerEnter2D(Collision2D other)
     {
-        CarController controller = other.GetComponent<CarController>();
+        CarController controller = other.gameObject.GetComponent<CarController>();
 
         if (controller != null)
         {
